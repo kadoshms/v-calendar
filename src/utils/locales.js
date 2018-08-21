@@ -3,7 +3,7 @@ import { getMonthDates, getWeekdayDates } from './helpers';
 // Infer first day of week === 1 if not listed (dow)
 const locales = {
   // Arabic
-  ar: { dow: 7, L: 'D/\u200FM/\u200FYYYY' },
+  ar: { dow: 7, L: 'D/\u200FM/\u200FYYYY', dir: 'rtl' },
   // Bulgarian
   bg: { dow: 2, L: 'D.MM.YYYY' },
   // Catalan
@@ -75,7 +75,7 @@ const locales = {
   // Ukrainian
   uk: { dow: 2, L: 'DD.MM.YYYY' },
   // Hebrew
-  he: { dow: 1, L: 'DD.MM.YYYY' },
+  he: { dow: 1, L: 'DD.MM.YYYY', dir: 'rtl' },
 };
 locales.en = locales['en-US'];
 locales.zh = locales['zh-CN'];
@@ -124,6 +124,7 @@ export default locale => {
     locale: resolvedLocale,
     firstDayOfWeek: localeExtra.dow,
     masks: { L: localeExtra.L },
+    dir: localeExtra.dir || 'ltr',
     dayNames,
     dayNamesShort,
     dayNamesShorter,

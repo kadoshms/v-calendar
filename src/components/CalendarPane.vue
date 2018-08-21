@@ -22,8 +22,8 @@
       </div>
       <!--Header title-->
       <div
-        :class='["c-title-layout", titleClass]'>   
-        <!--Navigation popover--> 
+        :class='["c-title-layout", titleClass]'>
+        <!--Navigation popover-->
         <popover
           class='c-title-popover'
           direction='bottom'
@@ -153,6 +153,7 @@ import SvgIcon from './SvgIcon';
 import defaults from '@/utils/defaults';
 import { getWeekdayDates, evalFn } from '@/utils/helpers';
 import { format } from '@/utils/fecha';
+import getLocaleDefaults from '@/utils/locales';
 
 import {
   todayComps,
@@ -184,6 +185,7 @@ export default {
     paneWidth: Number,
     hideLeftButton: Boolean,
     hideRightButton: Boolean,
+    locale: String,
   },
   data() {
     return {
@@ -243,13 +245,17 @@ export default {
       return evalFn(this.styles.headerHorizontalDivider, this.page_);
     },
     weekdaysStyle_() {
-      return evalFn(this.styles.weekdays, this.page_);
+      return {
+        ...evalFn(this.styles.weekdays, this.page_),
+        direction: getLocaleDefaults(this.locale).dir,
+      };
     },
     weekdaysHorizontalDividerStyle_() {
       return evalFn(this.styles.weekdaysHorizontalDivider, this.page_);
     },
     weeksStyle_() {
       return {
+        direction: getLocaleDefaults(this.locale).dir,
         ...evalFn(this.styles.weeks, this.page_),
         ...(this.weeksTransitioning ? { overflow: 'hidden' } : null),
       };
