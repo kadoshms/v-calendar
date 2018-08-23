@@ -368,17 +368,19 @@ export default {
       this.move({ month: this.page_.month, year: this.page_.year - 1 });
     },
     movePrevMonth() {
-      this.move(getLocaleDefaults(this.locale).dir === 'ltr' ? this.page_.prevMonthComps : this.page_.nextMonthComps);
+      const next = getLocaleDefaults(this.locale).dir === 'ltr' ? this.page_.prevMonthComps : this.page_.nextMonthComps;
+      this.$emit('move-clicked', next);
+      this.move(next);
     },
     moveThisMonth() {
       this.move(todayComps);
     },
     moveNextMonth() {
-      this.$emit('move-clicked');
-      this.move(getLocaleDefaults(this.locale).dir === 'ltr' ? this.page_.nextMonthComps : this.page_.prevMonthComps);
+      const next = getLocaleDefaults(this.locale).dir === 'ltr' ? this.page_.nextMonthComps : this.page_.prevMonthComps;
+      this.$emit('move-clicked', next);
+      this.move(next);
     },
     moveNextYear() {
-      this.$emit('move-clicked');
       this.move({ month: this.page_.month, year: this.page_.year + 1 });
     },
     move(pageInfo) {
