@@ -374,9 +374,11 @@ export default {
       this.move(todayComps);
     },
     moveNextMonth() {
+      this.$emit('move-clicked');
       this.move(getLocaleDefaults(this.locale).dir === 'ltr' ? this.page_.nextMonthComps : this.page_.prevMonthComps);
     },
     moveNextYear() {
+      this.$emit('move-clicked');
       this.move({ month: this.page_.month, year: this.page_.year + 1 });
     },
     move(pageInfo) {
