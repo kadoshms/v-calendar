@@ -24,7 +24,9 @@ const AttributeStore = attrs => {
           targetDate: attribute.includesDay(day),
         }))
         .filter(a => a.targetDate)
-        .sort((a, b) => a.targetDate.compare(b.targetDate));
+        .sort((a, b) => a.targetDate.compare(b.targetDate))
+        .sort((a, b) => b.score - a.score)
+        .filter((x, i) => i === 0);
     },
   };
 };
