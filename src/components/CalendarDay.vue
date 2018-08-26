@@ -36,7 +36,7 @@
       @mouseover='mouseover'
       @mouseleave='mouseleave'>
       <slot
-        name='day-content' 
+        name='day-content'
         :day='day'
         :content-style='contentStyle'
         :attributes='attributesList'>
@@ -62,6 +62,51 @@
           class='c-day-dot'
           :style='dot.style'>
         </span>
+      </div>
+    </div>
+    <!-- Circles layer -->
+    <div
+      class='c-day-layer c-day-box-center-bottom'
+      v-if='hasCircles'>
+      <div
+        class='c-day-dots'>
+        <!--<span-->
+        <!--v-for='circle in circles'-->
+        <!--:key='circle.key'-->
+        <!--class='c-day-dot'-->
+        <!--:style='circle.style'>-->
+        <!--</span>-->
+        <event-icon
+          name='circle'>
+        </event-icon>
+      </div>
+    </div>
+    <!-- Circles layer -->
+    <div
+      class='c-day-layer c-day-box-center-bottom'
+      v-if='hasStars'>
+      <div
+        class='c-day-dots'>
+        <event-icon
+          name='star'>
+        </event-icon>
+      </div>
+    </div>
+    <!-- Octagons layer -->
+    <div
+      class='c-day-layer c-day-box-center-bottom'
+      v-if='hasOctagons'>
+      <div
+        class='c-day-dots'>
+        <!--<span-->
+        <!--v-for='circle in circles'-->
+        <!--:key='circle.key'-->
+        <!--class='c-day-dot'-->
+        <!--:style='circle.style'>-->
+        <!--</span>-->
+        <event-icon
+          name='octagon'>
+        </event-icon>
       </div>
     </div>
     <!-- Bars layer -->
@@ -137,9 +182,11 @@ import {
 } from '@/utils/helpers';
 import { isFunction, isObject } from '@/utils/typeCheckers';
 import defaults from '@/utils/defaults';
+import EventIcon from './EventIcon';
 
 export default {
   components: {
+    EventIcon,
     Popover,
     CalendarDayPopoverRow,
   },
@@ -191,6 +238,9 @@ export default {
             isFunction(a.highlight) ||
             isFunction(a.highlightCaps) ||
             isFunction(a.dot) ||
+            isFunction(a.star) ||
+            isFunction(a.octagon) ||
+            isFunction(a.circle) ||
             isFunction(a.bar) ||
             isFunction(a.popover) ||
             isFunction(a.contentStyle),
@@ -214,6 +264,24 @@ export default {
     },
     hasDots() {
       return !!arrayHasItems(this.dots);
+    },
+    circles() {
+      return this.glyphs.circles;
+    },
+    hasCircles() {
+      return !!arrayHasItems(this.circles);
+    },
+    hasOctagons() {
+      return !!arrayHasItems(this.octagons);
+    },
+    octagons() {
+      return this.glyphs.octagons;
+    },
+    hasStars() {
+      return !!arrayHasItems(this.stars);
+    },
+    stars() {
+      return this.glyphs.stars;
     },
     dotsStyle() {
       return this.styles.dots;
@@ -333,8 +401,17 @@ export default {
               dot,
               bar,
               popover,
+              circle,
+              octagon,
+              star,
             } = attr;
-            const { backgrounds, dots, bars, popovers, contentStyle } = glyphs;
+            const { backgrounds, dots, bars, popovers, contentStyle, circles, octagons, stars } = glyphs;
+            // Add star
+            if (star) stars.push(this.getStar(attr));
+            // Add circles
+            if (circle) circles.push(this.getCircle(attr));
+            // Add circles
+            if (octagon) octagons.push(this.getOctagon(attr));
             // Add backgrounds for highlight if needed
             if (highlight && !(onStart && onEnd && highlightCaps))
               backgrounds.push(this.getBackground(attr));
@@ -357,6 +434,9 @@ export default {
             dots: [],
             bars: [],
             popovers: [],
+            circles: [],
+            stars: [],
+            octagons: [],
             contentStyle: {},
           },
         );
@@ -391,6 +471,9 @@ export default {
           { name: 'highlightCaps', mixin: defaults.highlightCaps, validate },
           { name: 'dot', mixin: defaults.dot, validate },
           { name: 'bar', mixin: defaults.bar, validate },
+          { name: 'circle', mixin: defaults.circle, validate },
+          { name: 'octagon', mixin: defaults.octagon, validate },
+          { name: 'star', mixin: defaults.star, validate },
           { name: 'contentStyle', validate },
           { name: 'popover', validate },
           { name: 'customData' },
@@ -552,6 +635,45 @@ export default {
           borderWidth: bar.borderWidth,
           borderStyle: bar.borderStyle,
           opacity: bar.opacity,
+        },
+      };
+    },
+    getCircle({ key, circle }) {
+      return {
+        key,
+        style: {
+          height: circle.height,
+          backgroundColor: circle.backgroundColor,
+          borderColor: circle.borderColor,
+          borderWidth: circle.borderWidth,
+          borderStyle: circle.borderStyle,
+          opacity: circle.opacity,
+        },
+      };
+    },
+    getOctagon({ key, octagon }) {
+      return {
+        key,
+        style: {
+          height: octagon.height,
+          backgroundColor: octagon.backgroundColor,
+          borderColor: octagon.borderColor,
+          borderWidth: octagon.borderWidth,
+          borderStyle: octagon.borderStyle,
+          opacity: octagon.opacity,
+        },
+      };
+    },
+    getStar({ key, star }) {
+      return {
+        key,
+        style: {
+          height: star.height,
+          backgroundColor: star.backgroundColor,
+          borderColor: star.borderColor,
+          borderWidth: star.borderWidth,
+          borderStyle: star.borderStyle,
+          opacity: star.opacity,
         },
       };
     },

@@ -90,6 +90,27 @@ const defaults = {
     borderRadius: '50%',
     opacity: 1,
   },
+  circle: {
+    height: '3px',
+    backgroundColor: '#66b3cc',
+    borderWidth: '0',
+    borderStyle: 'solid',
+    opacity: 1,
+  },
+  octagon: {
+    height: '3px',
+    backgroundColor: '#66b3cc',
+    borderWidth: '0',
+    borderStyle: 'solid',
+    opacity: 1,
+  },
+  star: {
+    height: '3px',
+    backgroundColor: '#66b3cc',
+    borderWidth: '0',
+    borderStyle: 'solid',
+    opacity: 1,
+  },
   bar: {
     height: '3px',
     backgroundColor: '#66b3cc',
