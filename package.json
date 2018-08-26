@@ -1,6 +1,6 @@
 {
-  "name": "v-calendar-he",
-  "version": "0.0.9",
+  "name": "@davidson/v-calendar",
+  "version": "0.0.1",
   "description": "A clean and extendable plugin for building simple attributed calendars in Vue.js.",
   "keywords": [
     "vue",
@@ -34,6 +34,9 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
     "build": "node build/build-lib.js"
+  },
+  "publishConfig": {
+    "registry": "http://18.196.24.199:4873"
   },
   "dependencies": {
     "vue": "^2.5.0"
