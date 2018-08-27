@@ -585,13 +585,11 @@ export default {
         },
       };
     },
-    getEventIcon({ key, eventIcon: { type }, dates }) {
-      const { start } = dates[0];
-
+    getEventIcon({ key, eventIcon: { type } }) {
       return {
         key,
         type,
-        stroke: start.setHours(0, 0, 0, 0) === (new Date()).setHours(0, 0, 0, 0) ? this.currentDayColor : undefined,
+        stroke: this.day.date.setHours(0, 0, 0, 0) === (new Date()).setHours(0, 0, 0, 0) ? this.currentDayColor : undefined,
         style: {
           fill: 'none',
         },
