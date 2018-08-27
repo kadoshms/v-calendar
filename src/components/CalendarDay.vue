@@ -73,6 +73,7 @@
         <event-icon
           v-for="eventIcon in eventIcons"
           :key="eventIcon.key"
+          :style="eventIcon.style"
           :name="eventIcon.type">
         </event-icon>
       </div>
@@ -164,6 +165,7 @@ export default {
     popoverContentOffset: { type: Number, default: 7 },
     styles: Object,
     formats: Object,
+    currentDayColor: String,
   },
   data() {
     return {
@@ -583,10 +585,16 @@ export default {
         },
       };
     },
-    getEventIcon({ key, eventIcon: { type } }) {
+    getEventIcon({ key, eventIcon: { type }, dates }) {
+      const { start } = dates[0];
+
       return {
         key,
         type,
+        style: {
+          stroke: start.setHours(0, 0, 0, 0) === (new Date()).setHours(0, 0, 0, 0) ? this.currentDayColor : this.color,
+          fill: 'none',
+        },
       };
     },
     getStar({ key, star }) {

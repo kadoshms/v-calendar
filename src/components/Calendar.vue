@@ -26,6 +26,7 @@ export default {
           page: position < 2 ? this.fromPage_ : this.toPage_,
           minPage: position < 2 ? this.minPage_ : this.minToPage,
           maxPage: position < 2 ? this.maxFromPage : this.maxPage_,
+          currentDayColor: this.currentDayColor,
           hideRightButton:
             !this.showLinkedButtons &&
             position === 1 &&
@@ -83,6 +84,10 @@ export default {
     minPage: Object,
     maxPage: Object,
     fromPage: Object,
+    currentDayColor: {
+      type: String,
+      default: () => 'white',
+    },
     toPage: Object,
     showLinkedButtons: {
       type: Boolean,

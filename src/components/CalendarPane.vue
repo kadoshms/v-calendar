@@ -121,6 +121,7 @@
       <calendar-weeks
         class='c-weeks-rows'
         v-for='p in pages'
+        :current-day-color="currentDayColor"
         :key='p.key'
         :month-comps='p.monthComps'
         :prev-month-comps='p.prevMonthComps'
@@ -183,6 +184,7 @@ export default {
     titleTransition: { type: String, default: () => defaults.titleTransition },
     weeksTransition: { type: String, default: () => defaults.weeksTransition },
     paneWidth: Number,
+    currentDayColor: String,
     hideLeftButton: Boolean,
     hideRightButton: Boolean,
     locale: String,

@@ -1,5 +1,5 @@
 <template>
-<div> 
+<div>
   <div
     class='c-week'
     v-for='(week, i) in weeks'
@@ -10,6 +10,7 @@
     <calendar-day
       v-for='day in week'
       :key='day.id'
+      :current-day-color="currentDayColor"
       :day='day'
       v-bind='$attrs'
       v-on='$listeners'>
@@ -34,6 +35,7 @@ export default {
     prevMonthComps: Object,
     nextMonthComps: Object,
     trimMaxWeek: Boolean,
+    currentDayColor: String,
   },
   computed: {
     weeks() {

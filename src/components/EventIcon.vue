@@ -64,7 +64,7 @@
   };
 
   export default {
-    props: ['name'],
+    props: ['name', 'color'],
     data() {
       return {
         width: _defSize,
