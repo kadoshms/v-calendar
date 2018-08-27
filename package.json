@@ -1,5 +1,5 @@
 {
-  "name": "@davidson/v-calendar",
+  "name": "@decor/davidson-v-calendar",
   "version": "0.0.1",
   "description": "A clean and extendable plugin for building simple attributed calendars in Vue.js.",
   "keywords": [
@@ -25,7 +25,7 @@
     "type": "git",
     "url": "https://github.com/nathanreyes/v-calendar"
   },
-  "private": true,
+  "private": false,
   "license": "MIT",
   "scripts": {
     "prepublishOnly": "npm run build",
