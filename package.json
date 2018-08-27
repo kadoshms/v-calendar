@@ -1,6 +1,6 @@
 {
   "name": "@davidson/v-calendar",
-  "version": "0.2.4",
+  "version": "0.0.1",
   "description": "A clean and extendable plugin for building simple attributed calendars in Vue.js.",
   "keywords": [
     "vue",
