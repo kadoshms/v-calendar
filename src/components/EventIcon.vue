@@ -7,7 +7,7 @@
     :viewBox='viewBox'
     @click='$emit("click", $event)'>
     <g>
-      <path v-for="path in paths" :d='path'>
+      <path :stroke="stroke" v-for="path in paths" :d='path'>
       </path>
     </g>
   </svg>
@@ -64,7 +64,7 @@
   };
 
   export default {
-    props: ['name', 'color'],
+    props: ['name', 'stroke'],
     data() {
       return {
         width: _defSize,

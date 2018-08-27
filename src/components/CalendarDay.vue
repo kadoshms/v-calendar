@@ -73,7 +73,7 @@
         <event-icon
           v-for="eventIcon in eventIcons"
           :key="eventIcon.key"
-          :style="eventIcon.style"
+          :stroke="eventIcon.stroke"
           :name="eventIcon.type">
         </event-icon>
       </div>
@@ -591,8 +591,8 @@ export default {
       return {
         key,
         type,
+        stroke: start.setHours(0, 0, 0, 0) === (new Date()).setHours(0, 0, 0, 0) ? this.currentDayColor : undefined,
         style: {
-          stroke: start.setHours(0, 0, 0, 0) === (new Date()).setHours(0, 0, 0, 0) ? this.currentDayColor : this.color,
           fill: 'none',
         },
       };

@@ -2,7 +2,7 @@
   <div id="app">
     <v-calendar @move-clicked="foo"
                 :attributes="attributes"
-                :current-day-color="'white'"
+                :current-day-color="'red'"
                 :locale="'he'"></v-calendar>
   </div>
 </template>
