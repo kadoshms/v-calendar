@@ -64,53 +64,16 @@
         </span>
       </div>
     </div>
-    <!-- Circles layer -->
+    <!-- Event Icons layer -->
     <div
       class='c-day-layer c-day-box-center-center'
-      v-if='hasCircles'>
+      v-if='hasEventIcons'>
       <div
         class='c-day-dots'>
         <event-icon
-          name='circle'>
-        </event-icon>
-      </div>
-    </div>
-    <!-- Bubbles layer -->
-    <div
-      class='c-day-layer c-day-box-center-center'
-      v-if='hasBubbles'>
-      <div
-        class='c-day-dots'>
-        <event-icon
-          name='bubble'>
-        </event-icon>
-      </div>
-    </div>
-    <!-- Circles layer -->
-    <div
-      class='c-day-layer c-day-box-center-center'
-      v-if='hasStars'>
-      <div
-        class='c-day-dots'>
-        <event-icon
-          name='star'>
-        </event-icon>
-      </div>
-    </div>
-    <!-- Octagons layer -->
-    <div
-      class='c-day-layer c-day-box-center-center'
-      v-if='hasOctagons'>
-      <div
-        class='c-day-dots'>
-        <!--<span-->
-        <!--v-for='circle in circles'-->
-        <!--:key='circle.key'-->
-        <!--class='c-day-dot'-->
-        <!--:style='circle.style'>-->
-        <!--</span>-->
-        <event-icon
-          name='octagon'>
+          v-for="eventIcon in eventIcons"
+          :key="eventIcon.key"
+          :name="eventIcon.type">
         </event-icon>
       </div>
     </div>
@@ -243,10 +206,7 @@ export default {
             isFunction(a.highlight) ||
             isFunction(a.highlightCaps) ||
             isFunction(a.dot) ||
-            isFunction(a.star) ||
-            isFunction(a.bubble) ||
-            isFunction(a.octagon) ||
-            isFunction(a.circle) ||
+            isFunction(a.eventIcon) ||
             isFunction(a.bar) ||
             isFunction(a.popover) ||
             isFunction(a.contentStyle),
@@ -271,29 +231,11 @@ export default {
     hasDots() {
       return !!arrayHasItems(this.dots);
     },
-    circles() {
-      return this.glyphs.circles;
+    hasEventIcons() {
+      return !!arrayHasItems(this.eventIcons);
     },
-    hasCircles() {
-      return !!arrayHasItems(this.circles);
-    },
-    hasOctagons() {
-      return !!arrayHasItems(this.octagons);
-    },
-    octagons() {
-      return this.glyphs.octagons;
-    },
-    hasBubbles() {
-      return !!arrayHasItems(this.bubbles);
-    },
-    bubbles() {
-      return this.glyphs.bubbles;
-    },
-    hasStars() {
-      return !!arrayHasItems(this.stars);
-    },
-    stars() {
-      return this.glyphs.stars;
+    eventIcons() {
+      return this.glyphs.eventIcons;
     },
     dotsStyle() {
       return this.styles.dots;
@@ -413,20 +355,11 @@ export default {
               dot,
               bar,
               popover,
-              circle,
-              octagon,
-              star,
-              bubble,
+              eventIcon,
             } = attr;
-            const { backgrounds, dots, bars, popovers, contentStyle, circles, octagons, stars, bubbles } = glyphs;
-            // Add star
-            if (star) stars.push(this.getStar(attr));
-            // Add circles
-            if (circle) circles.push(this.getCircle(attr));
-            // Add Octagons
-            if (octagon) octagons.push(this.getOctagon(attr));
-            // Add bubbles
-            if (bubble) bubbles.push(this.getBubble(attr));
+            const { backgrounds, dots, bars, popovers, contentStyle, eventIcons } = glyphs;
+            // add event icons
+            if (eventIcon) eventIcons.push(this.getEventIcon(attr));
             // Add backgrounds for highlight if needed
             if (highlight && !(onStart && onEnd && highlightCaps))
               backgrounds.push(this.getBackground(attr));
@@ -449,10 +382,7 @@ export default {
             dots: [],
             bars: [],
             popovers: [],
-            circles: [],
-            bubbles: [],
-            stars: [],
-            octagons: [],
+            eventIcons: [],
             contentStyle: {},
           },
         );
@@ -487,9 +417,7 @@ export default {
           { name: 'highlightCaps', mixin: defaults.highlightCaps, validate },
           { name: 'dot', mixin: defaults.dot, validate },
           { name: 'bar', mixin: defaults.bar, validate },
-          { name: 'circle', mixin: defaults.circle, validate },
-          { name: 'octagon', mixin: defaults.octagon, validate },
-          { name: 'bubble', mixin: defaults.octagon, validate },
+          { name: 'eventIcon', mixin: defaults.eventIcon, validate },
           { name: 'star', mixin: defaults.star, validate },
           { name: 'contentStyle', validate },
           { name: 'popover', validate },
@@ -655,43 +583,10 @@ export default {
         },
       };
     },
-    getCircle({ key, circle }) {
+    getEventIcon({ key, eventIcon: { type } }) {
       return {
         key,
-        style: {
-          height: circle.height,
-          backgroundColor: circle.backgroundColor,
-          borderColor: circle.borderColor,
-          borderWidth: circle.borderWidth,
-          borderStyle: circle.borderStyle,
-          opacity: circle.opacity,
-        },
-      };
-    },
-    getOctagon({ key, octagon }) {
-      return {
-        key,
-        style: {
-          height: octagon.height,
-          backgroundColor: octagon.backgroundColor,
-          borderColor: octagon.borderColor,
-          borderWidth: octagon.borderWidth,
-          borderStyle: octagon.borderStyle,
-          opacity: octagon.opacity,
-        },
-      };
-    },
-    getBubble({ key, bubble }) {
-      return {
-        key,
-        style: {
-          height: bubble.height,
-          backgroundColor: bubble.backgroundColor,
-          borderColor: bubble.borderColor,
-          borderWidth: bubble.borderWidth,
-          borderStyle: bubble.borderStyle,
-          opacity: bubble.opacity,
-        },
+        type,
       };
     },
     getStar({ key, star }) {

@@ -90,6 +90,13 @@ const defaults = {
     borderRadius: '50%',
     opacity: 1,
   },
+  eventIcon: {
+    height: '3px',
+    backgroundColor: '#66b3cc',
+    borderWidth: '0',
+    borderStyle: 'solid',
+    opacity: 1,
+  },
   circle: {
     height: '3px',
     backgroundColor: '#66b3cc',
