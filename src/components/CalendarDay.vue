@@ -586,11 +586,11 @@ export default {
         },
       };
     },
-    getEventIcon({ key, eventIcon: { type } }) {
+    getEventIcon({ key, eventIcon: { type, stroke} }) {
       return {
         key,
         type,
-        stroke: this.day.date.setHours(0, 0, 0, 0) === (new Date()).setHours(0, 0, 0, 0) ? this.currentDayColor : undefined,
+        stroke: this.day.date.setHours(0, 0, 0, 0) === (new Date()).setHours(0, 0, 0, 0) ? this.currentDayColor : stroke,
         style: {
           fill: 'none',
         },

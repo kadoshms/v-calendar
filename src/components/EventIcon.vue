@@ -150,7 +150,7 @@
     },
     methods: {
       getFill() {
-          return ((this.strokeWidth === '0')) ? this.stroke : 'none';
+          return (this.strokeWidth === '0') ? this.stroke : 'none';
       },
       updateIcon() {
         const icon = icons[this.name];

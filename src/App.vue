@@ -74,8 +74,12 @@
           }, {
             score: 3,
             eventIcon: {
-              backgroundColor: 'red',
+              backgroundColor: 'blue',
               type: 'octagon',
+              stroke: 'blue',
+              style: {
+                fill: 'blue',
+              },
             },
             dates: {
               start: new Date(2018, 7, 30),
