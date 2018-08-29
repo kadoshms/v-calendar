@@ -88,10 +88,30 @@
               type: 'bubble',
             },
             dates: {
-              start: new Date(2018, 7, 31),
-              end: new Date(2018, 7, 31),
+              start: new Date(2018, 8, 31),
+              end: new Date(2018, 8, 31),
             },
-          }],
+          }, {
+                score: 1004,
+                eventIcon: {
+                    backgroundColor: 'red',
+                    type: 'bubble',
+                },
+                dates: {
+                    start: new Date(2018, 7, 26),
+                    end: new Date(2018, 7, 26),
+                },
+            }, {
+                score: 44,
+                eventIcon: {
+                    backgroundColor: 'red',
+                    type: 'bubble',
+                },
+                dates: {
+                    start: new Date(2018, 8, 31),
+                    end: new Date(2018, 8, 31),
+                },
+            }],
       };
     },
     methods: {
