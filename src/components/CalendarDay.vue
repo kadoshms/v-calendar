@@ -3,6 +3,7 @@
   align='center'
   transition='fade'
   class='c-day-popover'
+  :class="{'hasEventIcons' : hasEventIcons}"
   :content-offset='popoverContentOffset'
   :visibility='popoverVisibility'
   :content-style='popoverContentStyle'
@@ -644,6 +645,9 @@ export default {
 
 .c-day-popover
   flex: 1
+
+.c-day-popover.hasEventIcons
+  cursor: pointer
 
 .c-day
   position: relative
