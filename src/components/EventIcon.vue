@@ -12,10 +12,11 @@
     <!--</g>-->
   <!--</svg>-->
     <svg
+            class='event-icon'
+            :style="style"
             :width="width"
             :height="height"
             :viewBox="viewBox"
-            fill="none"
             @click='$emit("click", $event)
 '>
         <g v-if="g" fill-rule="evenodd" :stroke-width="strokeWidth">
