@@ -11,11 +11,17 @@
       <!--</path>-->
     <!--</g>-->
   <!--</svg>-->
-    <svg xmlns="http://www.w3.org/2000/svg" :width="width" :height="height" :viewBox="viewBox"  fill="none" stroke="black">
+    <svg
+            :width="width"
+            :height="height"
+            :viewBox="viewBox"
+            fill="none"
+            @click='$emit("click", $event)
+'>
         <g v-if="g" fill-rule="evenodd" :stroke-width="strokeWidth">
-            <path stroke="#85C3B8" v-for="path in paths" :d='path'/>
+            <path v-for="path in paths" :stroke="stroke" :d='path'/>
         </g>
-        <path v-else stroke="#85C3B8" :stroke-width="strokeWidth" fill-rule="evenodd" v-for="path in paths" :d='path'/>
+        <path v-else :stroke="stroke" :stroke-width="strokeWidth" fill-rule="evenodd" v-for="path in paths" :d='path'/>
     </svg>
 </template>
 
@@ -72,35 +78,35 @@
 
   const icons = {
       star: {
-          width: '37',
-          height: '40',
-          viewBox: '0 2 27 24',
+          width: '47',
+          height: '50',
+          viewBox: '-1 2 29 24',
           fill: 'none',
           strokeWidth: '2',
           g: false,
           paths: ['m14.718297,0.810991l3.856,5.837c0.172,0.26 0.433,0.45 0.734,0.534l6.743,1.863a1.293,1.293 0 0 1 0.667,2.052l-4.36,5.47a1.293,1.293 0 0 0 -0.281,0.864l0.312,6.987a1.293,1.293 0 0 1 -1.746,1.269l-6.55,-2.456a1.29,1.29 0 0 0 -0.907,0l-6.55,2.456a1.292,1.292 0 0 1 -1.745,-1.27l0.31,-6.986a1.292,1.292 0 0 0 -0.28,-0.864l-4.36,-5.47a1.293,1.293 0 0 1 0.668,-2.052l6.742,-1.864c0.302,-0.083 0.562,-0.273 0.735,-0.534l3.855,-5.836a1.293,1.293 0 0 1 2.158,0'],
       },
       circle: {
-          width: '36',
-          height: '36',
+          width: '46',
+          height: '46',
           viewBox: '0 0 27 25',
           strokeWidth: '1',
           g: false,
           paths: ['M13.219 1.01c-6.341 0-11.5 5.16-11.5 11.5 0 6.342 5.159 11.5 11.5 11.5 6.34 0 11.5-5.158 11.5-11.5 0-6.34-5.16-11.5-11.5-11.5m0 24c-6.893 0-12.5-5.606-12.5-12.5 0-6.892 5.607-12.5 12.5-12.5s12.5 5.608 12.5 12.5c0 6.894-5.607 12.5-12.5 12.5'],
       },
       octagon: {
-          width: '37',
-          height: '43',
-          viewBox: '-1 0 53 47',
+          width: '47',
+          height: '53',
+          viewBox: '-1 0 55 47',
           strokeWidth: '3.5',
           fill: 'none',
           g: false,
           paths: ['M51.038 25.646L40.536 43.835a4.302 4.302 0 0 1-3.727 2.152H15.806a4.304 4.304 0 0 1-3.728-2.152L1.577 25.646a4.303 4.303 0 0 1 0-4.304l10.5-18.19A4.306 4.306 0 0 1 15.807 1h21.003c1.538 0 2.958.821 3.727 2.152l10.502 18.19a4.303 4.303 0 0 1 0 4.304z'],
       },
       bubble: {
-          viewBox: '0 -8 23 40',
-          width: '33',
-          height: '56',
+          viewBox: '0 -7 23 40',
+          width: '43',
+          height: '66',
           strokeWidth: '1',
           g: true,
           paths:
@@ -109,8 +115,8 @@
                 ],
             },
       roundRect: {
-          width: '33',
-          height: '34',
+          width: '43',
+          height: '44',
           viewBox: '0 0 23 24',
           strokeWidth: '1',
           g: false,
@@ -164,4 +170,5 @@
     //stroke-width: 1;
     cursor: pointer;
   }
+
 </style>

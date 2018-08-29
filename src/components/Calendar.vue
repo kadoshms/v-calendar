@@ -253,6 +253,7 @@ export default {
 @import '../styles/vars.sass'
 
 .c-pane-container
+  width: 520px
   flex-shrink: 1
   display: inline-flex
   font-family: $font-family
@@ -275,5 +276,10 @@ export default {
   width: 1px
   border: 1px inset
   border-color: $pane-border-color
+
+.c-weeks-rows
+  min-height: 348px
+
+
 
 </style>
